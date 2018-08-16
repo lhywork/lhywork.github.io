@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<style type="text/css">
+.btn_primary{
+	width: 100%;
+	height: 200px;
+	line-height: 200px;
+	font-size: 30px;
+	text-align: center;
+	background: blue;
+	color: #fff;
+}
+</style>
+<script type="text/javascript">
+	var headers={
+        UserID:'82',
+     	Token:'wx3f90f2ba8a29296e'
+    };	
+    $.ajax({ 
+      	url: "http://182.254.138.91:8099/api/WeiXin/WXJS/GetTicket?url=" + encodeURIComponent(location.href.split('#')[0]),
+      	type:"post",
+      	headers:headers, 
+      	success: function(data){
+	        if(data.suc){
+	            wx.config({
+	            	debug: true,
+		            appId:'wx3f90f2ba8a29296e',
+		            timestamp:data.extra.timestamp,
+		            nonceStr:data.extra.noncestr,
+		            signature:data.extra.signature,
+		            jsApiList:['chooseImage','previewImage']
+	            });
+	        }
+    	}
+	});
+</script>
+<body>
+	<button class="btn btn_primary" id="chooseImage">图像接口</button>
+
+	<button class="btn btn_primary" id="previewImage">预览图片</button>
+</body>
+</html>
+<script>
+	wx.ready(function(){
+		document.querySelector('#chooseImage').onclick = function () {
+		  	alert("232")
+		    wx.chooseImage({
+			    success: function (res) {
+			    	alert("success:"+JSON.stringify(res))
+			        var localIds = res.localIds; //
+			    },
+			    fail:function(res) {
+			    	alert("error:"+JSON.stringify(res))
+			    }
+			});
+		};
+		document.querySelector('#previewImage').onclick = function () {
+			wx.previewImage({
+			    success: function (res) {
+			    	alert("success:"+JSON.stringify(res))
+			    },
+			    fail:function(res) {
+			    	alert("error:"+JSON.stringify(res))
+			    }
+			});
+		};
+	});
+</script>
