@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="baidu-site-verification" content="fO0ooXOROx" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。 输入help可以看到基本操作命令： show dbs:显示数据库列表  show collections：显示当前数据库中的集合（类似关系数据库中的表）  show users：显示用户 use ：切换当前数据库，这和MS-SQL里面的意思一样">
+<meta name="keywords" content="MongoDb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB基本命令用法">
+<meta property="og:url" content="http://yoursite.com/2017/08/24/7/index.html">
+<meta property="og:site_name" content="lhywork个人博客">
+<meta property="og:description" content="成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。 输入help可以看到基本操作命令： show dbs:显示数据库列表  show collections：显示当前数据库中的集合（类似关系数据库中的表）  show users：显示用户 use ：切换当前数据库，这和MS-SQL里面的意思一样">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2024-12-13T03:43:21.568Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB基本命令用法">
+<meta name="twitter:description" content="成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。 输入help可以看到基本操作命令： show dbs:显示数据库列表  show collections：显示当前数据库中的集合（类似关系数据库中的表）  show users：显示用户 use ：切换当前数据库，这和MS-SQL里面的意思一样">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TKSM1BLJTY',
+      apiKey: '1dee8f9378c0cdc323daa6d70d349d6b',
+      indexName: 'dev_lhywork',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字..","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/24/7/"/>
+
+
+
+
+
+  <title>MongoDB基本命令用法 | lhywork个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhywork个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/tools/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhywork">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhywork个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB基本命令用法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T10:52:45+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDb教程/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDb教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/24/7/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/08/24/7/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。</p>
+<p>输入help可以看到基本操作命令：</p>
+<p>show dbs:显示数据库列表 </p>
+<p>show collections：显示当前数据库中的集合（类似关系数据库中的表） </p>
+<p>show users：显示用户</p>
+<p>use <db name="">：切换当前数据库，这和MS-SQL里面的意思一样<br><a id="more"></a><br>db.help()：显示数据库操作命令，里面有很多的命令</db></p>
+<p>db.foo.help()：显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令 </p>
+<p>db.foo.find()：对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据）</p>
+<p>db.foo.find( { a : 1 } )：对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1</p>
+<p>MongoDB没有创建数据库的命令，但有类似的命令。</p>
+<p>如：如果你想创建一个“myTest”的数据库，先运行use myTest命令，之后就做一些操作（如：db.createCollection(‘user’)）,这样就可以创建一个名叫“myTest”的数据库。</p>
+<p>数据库常用命令</p>
+<p>1、Help查看命令提示</p>
+<p> help</p>
+<p>  db.help();</p>
+<p>  db.yourColl.help();</p>
+<p>  db.youColl.find().help();</p>
+<p>  rs.help();</p>
+<p>2、切换/创建数据库</p>
+<p> use yourDB;  当创建一个集合(table)的时候会自动创建当前数据库</p>
+<p>3、查询所有数据库</p>
+<p> show dbs;</p>
+<p>4、删除当前使用数据库</p>
+<p> db.dropDatabase();</p>
+<p>5、从指定主机上克隆数据库</p>
+<p> db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库</p>
+<p>6、从指定的机器上复制指定数据库数据到某个数据库</p>
+<p> db.copyDatabase(“mydb”, “temp”, “127.0.0.1”);将本机的mydb的数据复制到temp数据库中</p>
+<p>7、修复当前数据库</p>
+<p> db.repairDatabase();</p>
+<p>8、查看当前使用的数据库</p>
+<p> db.getName();</p>
+<p> db; db和getName方法是一样的效果，都可以查询当前使用的数据库</p>
+<p>9、显示当前db状态</p>
+<p> db.stats();</p>
+<p>10、当前db版本</p>
+<p> db.version();</p>
+<p>11、查看当前db的链接机器地址</p>
+<p> db.getMongo();</p>
+<p>Collection聚集集合</p>
+<p>1、创建一个聚集集合（table）</p>
+<p> db.createCollection(“collName”, {size: 20, capped: 5, max: 100});</p>
+<p>2、得到指定名称的聚集集合（table）</p>
+<p> db.getCollection(“account”);</p>
+<p>3、得到当前db的所有聚集集合</p>
+<p> db.getCollectionNames();</p>
+<p>4、显示当前db所有聚集索引的状态</p>
+<p> db.printCollectionStats();</p>
+<p> 用户相关</p>
+<p>1、添加一个用户</p>
+<p> db.addUser(“name”);</p>
+<p> db.addUser(“userName”, “pwd123”, true); 添加用户、设置密码、是否只读</p>
+<p>2、数据库认证、安全模式</p>
+<p> db.auth(“userName”, “123123”);</p>
+<p>3、显示当前所有用户</p>
+<p> show users;</p>
+<p>4、删除用户</p>
+<p> db.removeUser(“userName”);</p>
+<p>其他</p>
+<p>1、查询之前的错误信息</p>
+<p> db.getPrevError();</p>
+<p>2、清除错误记录</p>
+<p> db.resetError();</p>
+<p>查看聚集集合基本信息</p>
+<p>1、查看帮助  db.yourColl.help();</p>
+<p>2、查询当前集合的数据条数  db.yourColl.count();</p>
+<p>3、查看数据空间大小 db.userInfo.dataSize();</p>
+<p>4、得到当前聚集集合所在的db db.userInfo.getDB();</p>
+<p>5、得到当前聚集的状态 db.userInfo.stats();</p>
+<p>6、得到聚集集合总大小 db.userInfo.totalSize();</p>
+<p>7、聚集集合储存空间大小 db.userInfo.storageSize();</p>
+<p>8、Shard版本信息  db.userInfo.getShardVersion()</p>
+<p>9、聚集集合重命名 db.userInfo.renameCollection(“users”); 将userInfo重命名为users</p>
+<p>10、删除当前聚集集合 db.userInfo.drop();</p>
+<p>聚集集合查询</p>
+<p>1、查询所有记录</p>
+<p>db.userInfo.find();</p>
+<p>相当于：select* from userInfo;</p>
+<p>默认每页显示20条记录，当显示不下的情况下，可以用it迭代命令查询下一页数据。注意：键入it命令不能带“；”</p>
+<p>但是你可以设置每页显示数据的大小，用DBQuery.shellBatchSize= 50;这样每页就显示50条记录了。</p>
+<p>2、查询去掉后的当前聚集集合中的某列的重复数据</p>
+<p>db.userInfo.distinct(“name”);</p>
+<p>会过滤掉name中的相同数据</p>
+<p>相当于：select distict name from userInfo;</p>
+<p>3、查询age = 22的记录</p>
+<p>db.userInfo.find({“age”: 22});</p>
+<p>相当于： select * from userInfo where age = 22;</p>
+<p>4、查询age &gt; 22的记录</p>
+<p>db.userInfo.find({age: {$gt: 22}});</p>
+<p>相当于：select * from userInfo where age &gt;22;</p>
+<p>5、查询age &lt; 22的记录</p>
+<p>db.userInfo.find({age: {$lt: 22}});</p>
+<p>相当于：select * from userInfo where age &lt;22;</p>
+<p>6、查询age &gt;= 25的记录</p>
+<p>db.userInfo.find({age: {$gte: 25}});</p>
+<p>相当于：select * from userInfo where age &gt;= 25;</p>
+<p>7、查询age &lt;= 25的记录</p>
+<p>db.userInfo.find({age: {$lte: 25}});</p>
+<p>8、查询age &gt;= 23 并且 age &lt;= 26</p>
+<p>db.userInfo.find({age: {$gte: 23, $lte: 26}});</p>
+<p>9、查询name中包含 mongo的数据</p>
+<p>db.userInfo.find({name: /mongo/});<br>//相当于%%<br>select * from userInfo where name like ‘%mongo%’;</p>
+<p>10、查询name中以mongo开头的</p>
+<p>db.userInfo.find({name: /^mongo/});<br>select * from userInfo where name like ‘mongo%’;</p>
+<p>11、查询指定列name、age数据</p>
+<p>db.userInfo.find({}, {name: 1, age: 1});</p>
+<p>相当于：select name, age from userInfo;</p>
+<p>当然name也可以用true或false,当用ture的情况下河name:1效果一样，如果用false就是排除name，显示name以外的列信息。</p>
+<p>12、查询指定列name、age数据, age &gt; 25</p>
+<p>db.userInfo.find({age: {$gt: 25}}, {name: 1, age: 1});</p>
+<p>相当于：select name, age from userInfo where age &gt;25;</p>
+<p>13、按照年龄排序</p>
+<p>升序：db.userInfo.find().sort({age: 1});<br>降序：db.userInfo.find().sort({age: -1});</p>
+<p>14、查询name = zhangsan, age = 22的数据</p>
+<p>db.userInfo.find({name: ‘zhangsan’, age: 22});<br>相当于：select * from userInfo where name = ‘zhangsan’ and age = ‘22’;</p>
+<p>15、查询前5条数据</p>
+<p>db.userInfo.find().limit(5);<br>相当于：selecttop 5 * from userInfo;</p>
+<p>16、查询10条以后的数据</p>
+<p>db.userInfo.find().skip(10);<br>相当于：select <em> from userInfo where id not in (<br>selecttop 10 </em> from userInfo<br>);</p>
+<p>17、查询在5-10之间的数据</p>
+<p>db.userInfo.find().limit(10).skip(5);<br>可用于分页，limit是pageSize，skip是第几页*pageSize</p>
+<p>18、or与 查询</p>
+<p>db.userInfo.find({$or: [{age: 22}, {age: 25}]});<br>相当于：select * from userInfo where age = 22 or age = 25;</p>
+<p>19、查询第一条数据</p>
+<p>db.userInfo.findOne();<br>相当于：selecttop 1 * from userInfo;<br>db.userInfo.find().limit(1);</p>
+<p>20、查询某个结果集的记录条数</p>
+<p>db.userInfo.find({age: {$gte: 25}}).count();<br>相当于：select count(*) from userInfo where age &gt;= 20;</p>
+<p>21、按照某列进行排序</p>
+<p>db.userInfo.find({sex: {$exists: true}}).count();<br>相当于：select count(sex) from userInfo;<br>索引</p>
+<p>1、创建索引</p>
+<p>db.userInfo.ensureIndex({name: 1});<br>db.userInfo.ensureIndex({name: 1, ts: -1});</p>
+<p>2、查询当前聚集集合所有索引</p>
+<p>db.userInfo.getIndexes();</p>
+<p>3、查看总索引记录大小</p>
+<p>db.userInfo.totalIndexSize();</p>
+<p>4、读取当前集合的所有index信息</p>
+<p>db.users.reIndex();</p>
+<p>5、删除指定索引</p>
+<p>db.users.dropIndex(“name_1”);</p>
+<p>6、删除所有索引索引</p>
+<p>db.users.dropIndexes();<br> 修改、添加、删除集合数据</p>
+<p>1、添加</p>
+<p>db.users.save({name: ‘zhangsan’, age: 25, sex: true});<br>添加的数据的数据列，没有固定，根据添加的数据为准</p>
+<p>2、修改</p>
+<p>db.users.update({age: 25}, {$set: {name: ‘changeName’}}, false, true);<br>相当于：update users set name = ‘changeName’ where age = 25;</p>
+<p>db.users.update({name: ‘Lisi’}, {$inc: {age: 50}}, false, true);<br>相当于：update users set age = age + 50 where name = ‘Lisi’;</p>
+<p>db.users.update({name: ‘Lisi’}, {$inc: {age: 50}, $set: {name: ‘hoho’}}, false, true);<br>相当于：update users set age = age + 50, name = ‘hoho’ where name = ‘Lisi’;</p>
+<p>3、删除</p>
+<p>db.users.remove({age: 132});</p>
+<p>4、查询修改删除</p>
+<p>db.users.findAndModify({<br>    query: {age: {$gte: 25}},<br>    sort: {age: -1},<br>    update: {$set: {name: ‘a2’}, $inc: {age: 2}},<br>    remove: true<br>});</p>
+<p>db.runCommand({ findandmodify : “users”,<br>    query: {age: {$gte: 25}},<br>    sort: {age: -1},<br>    update: {$set: {name: ‘a2’}, $inc: {age: 2}},<br>    remove: true<br>});<br>update 或 remove 其中一个是必须的参数; 其他参数可选。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>详解</th>
+<th style="text-align:center">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>query</td>
+<td>查询过滤条件</td>
+<td style="text-align:center">{}</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>如果多个文档符合查询过滤条件，将以该参数指定的排列方式选择出排在首位的对象，该对象将被操作</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>若为true，被选中对象将在返回前被删除</td>
+<td style="text-align:center">234</td>
+</tr>
+<tr>
+<td>update</td>
+<td>一个 修改器对象</td>
+<td style="text-align:center">N/A</td>
+</tr>
+<tr>
+<td>new</td>
+<td>若为true，将返回修改后的对象而不是原始对象。在删除操作中，该参数被忽略。</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>参见Retrieving a Subset of Fields (1.5.0+)</td>
+<td style="text-align:center">All fields</td>
+</tr>
+<tr>
+<td>upsert</td>
+<td>创建新对象若查询结果为空。 示例 (1.5.4+)</td>
+<td style="text-align:center">false</td>
+</tr>
+</tbody>
+</table>
+<p>语句块操作</p>
+<p>1、简单Hello World</p>
+<p>print(“Hello World!”);</p>
+<p>这种写法调用了print函数，和直接写入”Hello World!”的效果是一样的；</p>
+<p>2、将一个对象转换成json</p>
+<p>tojson(new Object());</p>
+<p>tojson(new Object(‘a’));</p>
+<p>3、循环添加数据</p>
+<blockquote>
+<p>for (var i = 0; i &lt; 30; i++) {<br>… db.users.save({name: “u_” + i, age: 22 + i, sex: i % 2});<br>… };<br>这样就循环添加了30条数据，同样也可以省略括号的写法</p>
+<p>for (var i = 0; i &lt; 30; i++) db.users.save({name: “u_” + i, age: 22 + i, sex: i % 2});<br>也是可以的，当你用db.users.find()查询的时候，显示多条数据而无法一页显示的情况下，可以用it查看下一页的信息；</p>
+</blockquote>
+<p>4、find 游标查询</p>
+<blockquote>
+<p>var cursor = db.users.find();<br>while (cursor.hasNext()) {<br>    printjson(cursor.next());<br>}</p>
+</blockquote>
+<p>这样就查询所有的users信息，同样可以这样写</p>
+<p>var cursor = db.users.find();</p>
+<p>while (cursor.hasNext()) { printjson(cursor.next); }</p>
+<p>同样可以省略{}号</p>
+<p>5、forEach迭代循环</p>
+<p>db.users.find().forEach(printjson);</p>
+<p>forEach中必须传递一个函数来处理每条迭代的数据信息</p>
+<p>6、将find游标当数组处理</p>
+<p>var cursor = db.users.find();</p>
+<p>cursor[4];</p>
+<p>取得下标索引为4的那条数据</p>
+<p>既然可以当做数组处理，那么就可以获得它的长度：cursor.length();或者cursor.count();</p>
+<p>那样我们也可以用循环显示数据</p>
+<p>for (var i = 0, len = c.length(); i &lt; len; i++) printjson(c[i]);</p>
+<p>7、将find游标转换成数组</p>
+<blockquote>
+<p>var arr = db.users.find().toArray();<br>printjson(arr[2]);</p>
+</blockquote>
+<p>用toArray方法将其转换为数组</p>
+<p>8、定制我们自己的查询结果</p>
+<p>只显示age &lt;= 28的并且只显示age这列数据</p>
+<p>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);</p>
+<p>db.users.find({age: {$lte: 28}}, {age: true}).forEach(printjson);</p>
+<p>排除age的列</p>
+<p>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);</p>
+<p>9、forEach传递函数显示信息</p>
+<p>db.things.find({x:4}).forEach(function(x) {print(tojson(x));});</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="lhywork WeChat Pay"/>
+        <p>微信打赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.jpg" alt="lhywork Alipay"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDb/" rel="tag"># MongoDb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/24/6/" rel="next" title="windows下mongodb安装与使用图文教程">
+                <i class="fa fa-chevron-left"></i> windows下mongodb安装与使用图文教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/12/13/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="lhywork" />
+          <p class="site-author-name" itemprop="name">lhywork</p>
+           
+              <p class="site-description motion-element" itemprop="description">在学习中感悟，在工作中进取。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhywork" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/lhywork" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lhywork" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lhywork" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lib.csdn.net/base/git" title="Git知识库" target="_blank">Git知识库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.gulpjs.com.cn/docs/api/" title="GulpAPi" target="_blank">GulpAPi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://doc.vue-js.com/v2/api/" title="VueJs" target="_blank">VueJs</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhywork</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    © <a class="theme-link" href="https://hexo.io">lhywork.cn</a>
+    <!-- 由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>. Theme by next
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<!-- 
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytb08BHP';
+      var conf = '0741139bf31f80cf7c07542b8cd4a524';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+ -->
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

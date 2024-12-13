@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="baidu-site-verification" content="fO0ooXOROx" />
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MongoDb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一、首先安装mongodb 1.下载地址：http://www.mongodb.org/downloads  2.解压缩到自己想要安装的目录，比如d:\mongodb  3.创建文件夹d:\mongodb\data\db、d:\mongodb\data\log，分别用来安装db和日志文件，在log文件夹下创建一个日志文件MongoDB.log，即d:\mongodb\data\log\MongoD">
+<meta name="keywords" content="MongoDb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows下mongodb安装与使用图文教程">
+<meta property="og:url" content="http://yoursite.com/2017/08/24/6/index.html">
+<meta property="og:site_name" content="lhywork个人博客">
+<meta property="og:description" content="一、首先安装mongodb 1.下载地址：http://www.mongodb.org/downloads  2.解压缩到自己想要安装的目录，比如d:\mongodb  3.创建文件夹d:\mongodb\data\db、d:\mongodb\data\log，分别用来安装db和日志文件，在log文件夹下创建一个日志文件MongoDB.log，即d:\mongodb\data\log\MongoD">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/08/24/6/6/2016060112045440.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/24/6/6/2016060112045441.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/24/6/6/2016060112045442.jpg">
+<meta property="og:updated_time" content="2024-12-13T03:43:21.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows下mongodb安装与使用图文教程">
+<meta name="twitter:description" content="一、首先安装mongodb 1.下载地址：http://www.mongodb.org/downloads  2.解压缩到自己想要安装的目录，比如d:\mongodb  3.创建文件夹d:\mongodb\data\db、d:\mongodb\data\log，分别用来安装db和日志文件，在log文件夹下创建一个日志文件MongoDB.log，即d:\mongodb\data\log\MongoD">
+<meta name="twitter:image" content="http://yoursite.com/2017/08/24/6/6/2016060112045440.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TKSM1BLJTY',
+      apiKey: '1dee8f9378c0cdc323daa6d70d349d6b',
+      indexName: 'dev_lhywork',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字..","hits_empty":"没有找到与 ${query} 相关的内容","hits_stats":"${hits} 条相关记录，共耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/24/6/"/>
+
+
+
+
+
+  <title>windows下mongodb安装与使用图文教程 | lhywork个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lhywork个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/tools/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lhywork">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lhywork个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">windows下mongodb安装与使用图文教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T10:28:25+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MongoDb教程/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDb教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/24/6/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/08/24/6/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、首先安装mongodb"><a href="#一、首先安装mongodb" class="headerlink" title="一、首先安装mongodb"></a>一、首先安装mongodb</h2><ul>
+<li><p>1.下载地址：<a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a></p>
+</li>
+<li><p>2.解压缩到自己想要安装的目录，比如d:\mongodb</p>
+</li>
+<li><p>3.创建文件夹d:\mongodb\data\db、d:\mongodb\data\log，分别用来安装db和日志文件，在log文件夹下创建一个日志文件MongoDB.log，即d:\mongodb\data\log\MongoDB.log</p>
+</li>
+<li><p>4.运行cmd.exe进入dos命令界面，执行下列命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> d:\mongodb\bin</div><div class="line">mongod -dbpath <span class="string">"d:\mongodb\data\db"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<p><img src="6/2016060112045440.png" alt=""></p>
+<p>看到类似的信息，则说明启动成功，默认MongoDB监听的端口是27017，mysql的是3306</p>
+<ul>
+<li>5.测试连接</li>
+</ul>
+<p>　新开一个cmd窗口，进入mongodb的bin目录，输入mongo或者mongo.exe，出现如下信息说明测试通过，此时我们已经进入了test这个数据库，如何进入其他数据库下面会说。</p>
+<p><img src="6/2016060112045441.png" alt=""></p>
+<p>输入exit或者ctrl+C可退出。</p>
+<ul>
+<li>6.当mongod.exe被关闭时，mongo.exe 就无法连接到数据库了，因此每次想使用mongodb数据库都要开启mongod.exe程序，所以比较麻烦，此时我们可以将MongoDB安装为windows服务</li>
+</ul>
+<p>还是运行cmd，进入bin文件夹，执行下列命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod --dbpath <span class="string">"d:\mongodb\data\db"</span> --logpath <span class="string">"d:\mongodb\data\log\MongoDB.log"</span> --install --serviceName <span class="string">"MongoDB"</span></div></pre></td></tr></table></figure></p>
+<p>　这里MongoDB.log就是开始建立的日志文件，–serviceName “MongoDB” 服务名为MongoDB<br>　接着启动mongodb服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NET START MongoDB</div></pre></td></tr></table></figure>
+<p><img src="6/2016060112045442.jpg" alt=""></p>
+<p>打开任务管理器，可以看到进程已经启动</p>
+<ul>
+<li>7.关闭服务和删除进程</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　&gt; d:\mongodb\bin&gt;NETstop MongoDB (关闭服务)</div><div class="line">　&gt; d:\mongodb\bin&gt;mongod --dbpath <span class="string">"d:\mongodb\data\db"</span> --logpath <span class="string">"d:\mongodb\data\log\MongoDB.log"</span> --remove --serviceName <span class="string">"MongoDB"</span> (删除，注意不是--install了）</div></pre></td></tr></table></figure>
+<h2 id="二、使用mongodb"><a href="#二、使用mongodb" class="headerlink" title="二、使用mongodb"></a>二、使用mongodb</h2><ul>
+<li>1.常用的命令</li>
+</ul>
+<p>show dbs 显示数据库列表use dbname 进入dbname数据库，大小写敏感，没有这个数据库也不要紧show collections 显示数据库中的集合，相当于表格</p>
+<ul>
+<li>2.创建&amp;新增</li>
+</ul>
+<p>• db.users.save({“name”:”lecaf”}) 创建了名为users的集合，并新增了一条{“name”:”lecaf”}的数据</p>
+<p>• db.users.insert({“name”:”ghost”, “age”:10}) 在users集合中插入一条新数据，，如果没有users这个集合，mongodb会自动创建</p>
+<p>• save()和insert()也存在着些许区别：若新增的数据主键已经存在，insert()会不做操作并提示错误，而save() 则更改原来的内容为新内容。</p>
+<p>• 存在数据：{ _id : 1, “ name “ : “ n1 “} ，_id是主键</p>
+<p>• insert({ _id : 1, “ name “ : “ n2 “ }) 会提示错误</p>
+<p>• save({ _id : 1, “ name “ : “ n2 “ })  会把 n1 改为 n2 ，有update的作用。</p>
+<ul>
+<li>3.删除</li>
+</ul>
+<p>• db.users.remove() 删除users集合下所有数据</p>
+<p>• db.users.remove({“name”: “lecaf”}) 删除users集合下name=lecaf的数据</p>
+<p>• db.users.drop()或db.runCommand({“drop”,”users”}) 删除集合users</p>
+<p>• db.runCommand({“dropDatabase”: 1}) 删除当前数据库</p>
+<ul>
+<li>4.查找</li>
+</ul>
+<p>• db.users.find() 查找users集合中所有数据</p>
+<p>• db.users.findOne() 查找users集合中的第一条数据</p>
+<ul>
+<li>5.修改</li>
+</ul>
+<p>•db.users.update({“name”:”lecaf”}, {“age”:10}) 修改name=lecaf的数据为age=10，第一个参数是查找条件，第二个参数是修改内容，除了主键，其他内容会被第二个参数的内容替换，主键不能修改</p>
+<h2 id="三、高级应用"><a href="#三、高级应用" class="headerlink" title="三、高级应用"></a>三、高级应用</h2><p>1.条件查找</p>
+<p>• db.collection.find({ “key” : value }) 查找key=value的数据</p>
+<p>• db.collection.find({ “key” : { $gt: value } }) key &gt; value</p>
+<p>• db.collection.find({ “key” : { $lt: value } }) key &lt; value</p>
+<p>• db.collection.find({ “key” : { $gte: value } }) key &gt;= value</p>
+<p>• db.collection.find({ “key” : { $lte: value } }) key &lt;= value</p>
+<p>• db.collection.find({ “key” : { $gt: value1 , $lt: value2 } }) value1 &lt; key &lt;value2</p>
+<p>• db.collection.find({ “key” : { $ne: value } }) key &lt;&gt; value</p>
+<p>• db.collection.find({ “key” : { $mod : [ 10 , 1 ] } }) 取模运算，条件相当于key % 10 == 1 即key除以10余数为1的</p>
+<p>• db.collection.find({ “key” : { $nin: [ 1, 2, 3 ] } }) 不属于，条件相当于key的值不属于[ 1, 2, 3 ]中任何一个</p>
+<p>• db.collection.find({ “key” : { $in: [ 1, 2, 3 ] } }) 属于，条件相当于key等于[ 1, 2, 3 ]中任何一个</p>
+<p>• db.collection.find({ “key” : { $size: 1 } }) $size 数量、尺寸，条件相当于key的值的数量是1（key必须是数组，一个值的情况不能算是数量为1的数组）</p>
+<p>• db.collection.find({ “key” : { $exists : true|false } }) $exists 字段存在，true返回存在字段key的数据，false返回不存在字度key的数据</p>
+<p>• db.collection.find({ “key”: /^val.*val$/i }) 正则，类似like；“i”忽略大小写，“m”支持多行</p>
+<p>• db.collection.find({ $or : [{a : 1}, {b : 2} ] }) $or或 （注意：MongoDB 1.5.3后版本可用），符合条件a=1的或者符合条件b=2的数据都会查询出来</p>
+<p>• db.collection.find({ “key”: value , $or : [{ a : 1 } , { b : 2 }] }) 符合条件key=value ，同时符合其他两个条件中任意一个的数据</p>
+<p>• db.collection.find({ “key.subkey” :value }) 内嵌对象中的值匹配，注意：”key.subkey”必须加引号</p>
+<p>• db.collection.find({ “key”: { $not : /^val.*val$/i } }) 这是一个与其他查询条件组合使用的操作符，不会单独使用。上述查询条件得到的结果集加上$not之后就能获得相反的集合。</p>
+<ul>
+<li>2.排序</li>
+</ul>
+<p>• db.collection.find().sort({ “key1” : -1 ,”key2” : 1 }) 这里的1代表升序，-1代表降序</p>
+<ul>
+<li>3.其他</li>
+</ul>
+<p>• db.collection.find().limit(5) 控制返回结果数量，如果参数是0，则当作没有约束，limit()将不起作用</p>
+<p>• db.collection.find().skip(5) 控制返回结果跳过多少数量，如果参数是0，则当作没有约束，skip()将不起作用，或者说跳过了0条</p>
+<p>• db.collection.find().skip(5).limit(5) 可用来做分页，跳过5条数据再取5条数据</p>
+<p>• db.collection.find().count(true) count()返回结果集的条数</p>
+<p>• db.collection.find().skip(5).limit(5).count(true) 在加入skip()和limit()这两个操作时，要获得实际返回的结果数，需要一个参数true，否则返回的是符合查询条件的结果总数</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.jpg" alt="lhywork WeChat Pay"/>
+        <p>微信打赏</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.jpg" alt="lhywork Alipay"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MongoDb/" rel="tag"># MongoDb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/22/5/" rel="next" title="CSS实现单行、多行文本溢出显示省略号">
+                <i class="fa fa-chevron-left"></i> CSS实现单行、多行文本溢出显示省略号
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/7/" rel="prev" title="MongoDB基本命令用法">
+                MongoDB基本命令用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="lhywork" />
+          <p class="site-author-name" itemprop="name">lhywork</p>
+           
+              <p class="site-description motion-element" itemprop="description">在学习中感悟，在工作中进取。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhywork" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/lhywork" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lhywork" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/lhywork" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lib.csdn.net/base/git" title="Git知识库" target="_blank">Git知识库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.gulpjs.com.cn/docs/api/" title="GulpAPi" target="_blank">GulpAPi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://doc.vue-js.com/v2/api/" title="VueJs" target="_blank">VueJs</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、首先安装mongodb"><span class="nav-number">1.</span> <span class="nav-text">一、首先安装mongodb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用mongodb"><span class="nav-number">2.</span> <span class="nav-text">二、使用mongodb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、高级应用"><span class="nav-number">3.</span> <span class="nav-text">三、高级应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lhywork</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    © <a class="theme-link" href="https://hexo.io">lhywork.cn</a>
+    <!-- 由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动 -->
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>. Theme by next
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+<!-- 
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytb08BHP';
+      var conf = '0741139bf31f80cf7c07542b8cd4a524';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+ -->
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

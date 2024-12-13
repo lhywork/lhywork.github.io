@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>在线二维码生成器</title>
+    <meta name="description" content=""> 
+    <link rel="stylesheet" type="text/css" href="css/IU89dungev32.css">
+    <link rel="stylesheet" type="text/css" href="css/spectrum.css">
+</head>
+<body class="html">
+<div class="ns-wraper">
+    <div class="uk-container uk-container-center ns-container">
+        <h2>在线生成二维码</h2>
+        <hr class="uk-article-separator">
+        <div class="uk-grid">
+            <div class="uk-width-2-10">
+                <main class="ns-content">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-camera"></i>类型</h3>
+                                    <select id="qr_type">
+                                        <option> image </option>
+                                        <option> canvas </option>
+                                        <option> div </option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-comment"></i>内容</h3>
+                                    <textarea style="width:100%;" id="content" placeholder="网址 或 文本">http://www.lhywork.cn/</textarea>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-tachometer"></i>前景色</h3>
+                                    <input type="text" id="fore_color">
+                                    <input type="hidden" id="h_fore_color" value="#000">
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-circle"></i>背景色</h3>
+                                    <input type="text" id="back_color">
+                                    <input type="hidden" id="h_back_color" value="#fff">
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-arrows"></i>容错率</h3>
+                                    <label><input type="radio" checked="checked" name="more" value="H"> H - 30% </label>
+                                    <label><input type="radio" name="more" value="Q"> Q - 25% </label>
+                                    <label><input type="radio" name="more" value="M"> M - 15% </label>
+                                    <label><input type="radio" name="more" value="L"> L  - 7% </label>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+            </div>
+            <div class="uk-width-6-10">
+                <main class="ns-content">
+                    <div class="uk-panel">
+                        <div class="uk-margin">
+                            <div class="uk-comment-body">
+                                <p id="qr" style="text-align:center;">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div class="uk-width-2-10">
+                <main class="ns-content">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-check-circle-o"></i>填充类型</h3>
+                                    <label><input type="radio" checked="checked" name="center" value="0"> 无 </label>
+                                    <label><input type="radio" name="center" value="1"> 横向矩形 </label>
+                                    <label><input type="radio" name="center" value="2"> 方形盒子 </label>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-exchange"></i>填充内容</h3>
+                                    <textarea style="width:100%;" id="center_content" placeholder="文本内容"></textarea>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-adjust"></i>填充内容颜色</h3>
+                                    <input type="text" id="center_color">
+                                    <input type="hidden" id="h_center_color" value="#f76f00">
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <hr class="uk-article-separator">
+                    <div class="uk-panel">
+                        <form class="uk-form">
+                            <div class="uk-form-controls uk-form-controls-text">
+                                <fieldset data-uk-margin="">
+                                    <h3 class="uk-panel-title"><i class="uk-icon-arrows"></i>大小</h3>
+                                    <label><input type="radio" name="size" value="100"> 100px</label>
+                                    <label><input type="radio" name="size" value="200"> 200px</label>
+                                    <label><input type="radio" name="size" value="300"> 300px</label>
+                                    <label><input type="radio" checked="checked" name="size" value="400"> 400px</label>
+                                    <label><input type="radio" name="size" value="500"> 500px</label>
+                                    <label><input type="radio" name="size" value="600"> 600px</label>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+            </div>
+            <!-- ns-content -->
+        </div>
+        <hr class="uk-article-separator uk-margin-large">
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+<!--[if lt IE 9]><style type="text/css">body{margin:0; padding:0}</style><div style="position:fixed;width:100%; height:50px; background:#323436; line-height:50px;color:#8C8C8C;text-indent:20px">   对不起，从此版本开始已经不在支持IE8及以下版本，请您升级您的浏览器或者使用firefox,chrome,safari,opera最新版本，谢谢！</div><script type="text/javascript">(function(){window.onload=function(){var imgs=document.getElementsByTagName("img");for(var i=0;i<imgs.length;i++){var data_src=imgs[i].getAttribute("data-src");if(data_src)imgs[i].setAttribute("src",data_src);}}})()</script><![endif]-->
+
+<script type="text/javascript" src="/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="/js/spectrum.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#fore_color").spectrum({
+            color: "#000",
+            change: function(color) {
+                $("#h_fore_color").val(color.toHexString());
+            }
+        });
+
+        $("#back_color").spectrum({
+            color: "#fff",
+            change: function(color) {
+                $("#h_back_color").val(color.toHexString());
+            }
+        });
+
+        $("#center_color").spectrum({
+            color:"#f76f00",
+            change:function(color){
+                $("#h_center_color").val(color.toHexString());
+            }
+        });
+
+        initQr();
+
+        $("input,select").change(function(){
+            initQr();
+        });
+        $("textarea").keyup(function(){
+            initQr();
+        })
+    });
+
+    function initQr(){
+        var option={
+            // render method: 'canvas', 'image' or 'div'
+            render: $("#qr_type>option:selected").val(),
+            // version range somewhere in 1 .. 40
+            minVersion: 1,
+            maxVersion: 40,
+            // error correction level: 'L', 'M', 'Q' or 'H'
+            ecLevel: $("input[name=more]:checked").val(),
+
+            // offset in pixel if drawn onto existing canvas
+            left: 0,
+            top: 0,
+            // size in pixel
+            size: $("input[name=size]:checked").val(),
+            // code color or image element
+            fill: $("#h_fore_color").val(),
+            // background color or image element, null for transparent background
+            background: $("#h_back_color").val(),
+
+            // content
+            text: $("#content").val(),
+            // corner radius relative to module width: 0.0 .. 0.5
+            radius: 0,
+            // quiet zone in modules
+            quiet: 0,
+            mode: parseInt($("input[name=center]:checked").val()),
+            mSize: 0.1,
+            mPosX: 0.5,
+            mPosY: 0.5,
+            label: $("#center_content").val(),
+            fontname: 'sans',
+            fontcolor: $("#h_center_color").val(),
+            image: null
+        };
+        $("#qr").html('').qrcode(option);
+    }
+</script>
+</html>
